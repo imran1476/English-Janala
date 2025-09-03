@@ -14,6 +14,13 @@ const loadLevelWord=(id)=>{
     .then(json=> displayLevelWord(json.data));
 
 }
+/*{
+    "id": 57,
+    "level": 3,
+    "word": "Gracious",
+    "meaning": "দয়ালু / সদয়",
+    "pronunciation": "গ্রেসিয়াস"
+}*/
 const displayLevelWord=(words)=>{
    const wordContainer=document.getElementById("word-container");
  wordContainer.innerHTML="";
@@ -22,9 +29,9 @@ const displayLevelWord=(words)=>{
     const card=document.createElement("div");
     card.innerHTML=`
     <div class="bg-white py-10 px-8 text-center rounded-lg shadow-lg">
-    <h2 class="text-3xl font-bold mb-5">Eager</h2>
+    <h2 class="text-3xl font-bold mb-5">${word.word}</h2>
 <p class="text-2xl ">Meaning /Pronounciation</p><br>
-<div class="font-bangla text-3xl">"আগ্রহী / ইগার"</div>
+<div class="font-bangla text-3xl">"${word.meaning}/${word.pronunciation}"</div>
 
 <div class="flex justify-between items-center">
 
