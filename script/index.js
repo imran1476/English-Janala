@@ -28,6 +28,61 @@ const loadLevelWord=(id)=>{
     });
 
 }
+const loadWordDetail=async(id)=>{
+    const url= `https://openapi.programming-hero.com/api/level/${id}`
+   const res=await fetch(url);
+   const details = await res.json();
+   displayWordDetails(details.data);
+}
+/*{
+"status": true,
+"message": "successfully fetched a word details",
+"data": {
+"word": "Eager",
+"meaning": "আগ্রহী",
+"pronunciation": "ইগার",
+"level": 1,
+"sentence": "The kids were eager to open their gifts.",
+"points": 1,
+"partsOfSpeech": "adjective",
+"synonyms": [
+"enthusiastic",
+"excited",
+"keen"
+],
+"id": 5
+}
+}*/
+const displayWordDetails=(word)=>{
+    console.log(word)
+    const detailBox=document.getElementById("detail-container");
+    detailBox.innerHTML=`
+        <div><h2 class="text-3xl font-bold">${word.word} ( <i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation})</h2></div>
+        <div><p class="text-xl font-semibold">Meaning</p>
+        <p>${word.meaning}</p></div>
+        <div><h5 class="text-xl font-semibold">Example</h5></div>
+      <div>  <p>${word.sentence}</p></div>
+        <div>
+            <p class="text-xl font-semibold font-bangla mb-4">সমার্থক শব্দ গুলো</p>
+            <span class="btn">Enthusiastic</span>
+            <span class="btn">excited</span>
+            <span class="btn">keen</span>
+        </div>
+   
+   </div>
+   
+    <div class="modal-action ">
+      <form method="dialog" >
+        <!-- if there is a button in form, it will close the modal -->
+         <!-- <div> <button class="btn btn-primary">Primary</button></div> -->
+        <div><button class="btn">Close</button></div>
+      </form>`;
+
+    document.getElementById("my_modal_5").showModal();
+
+
+}
+
 /*{
     "id": 57,
     "level": 3,
@@ -58,7 +113,7 @@ const displayLevelWord=(words)=>{
 
 <div class="flex justify-between items-center">
 
-    <button onclick="my_modal_5.showModal()" class="btn bg-[#1a91ff1a]"><i class="fa-solid fa-circle-info"></i></button>
+    <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1a91ff1a]"><i class="fa-solid fa-circle-info"></i></button>
     <button class="btn  bg-[#1a91ff1a]"><i class="fa-solid fa-volume-high"></i></button>
 </div>
 
